@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>JS DOM To Do List</title>
+</head>
+
+<body>
+
+<h1 class="text-center">Java Script DOM To-Do List</h1>
+
+
+<div class="w-50 ">
+	<ul class="list-group" id="addTodoItems">
+		<li class="list-group-item addTodoItem">Lawn Mowing</li>
+		<li class="list-group-item addTodoItem">Garage Cleaning</li>
+		<li class="list-group-item addTodoItem">Grocery Shopping</li>
+	</ul>
+</div>
+
+<div>
+	<form class="">
+		<div class="w-50 inputs">
+			<input class="form-control" id="input" name="input" type="text">
+			<button id="submit">Add To-Do</button>
+		</div>
+	</form>
+</div>
+
+<script>
+    let addTodoItems = document.getElementById('addTodoItems');
+    let input = document.querySelector('#input');
+
+    let submit = document
+        .querySelector('#submit')
+        .addEventListener('click', addTodo);
+    addTodoItems.addEventListener('click', removeTodo);
+
+    function addTodo(click) {
+        click.preventDefault();
+        let todoValue = input.value;
+        let newTodo = document.createElement('li');
+        if (todoValue != '') {
+            newTodo.textContent = todoValue;
+            newTodo.className = 'list-group-item addTodoItem';
+            addTodoItems.appendChild(newTodo);
+            input.value = '';
+        }
+    }
+
+    function removeTodo(click) {
+
+        click.target.style.setProperty('text-decoration','line-through');
+
+	    setTimeout(() => {
+            addTodoItems.removeChild(click.target);
+	    },1000);
+
+    }
+</script>
+
+</body>
+
+
+</html>
